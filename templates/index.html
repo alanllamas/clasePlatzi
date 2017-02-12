@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        {% load staticfiles %}
+        <meta charset="utf-8">
+        <title>Tienda</title>
+        <link rel="stylesheet" href="{% static 'css/style.css' %}" media="screen" title="no title" charset="utf-8">
+    </head>
+    <body>
+        <h1>Productos</h1>
+
+<br>
+        <table>
+            <thead>
+
+                <th>Nombre</th>
+                <th>Precio</th>
+                <th>Categoría</th>
+                <th>Imagen</th>
+
+            </thead>
+            <tbody>
+                {% for p in product %}
+                    <tr>
+
+                        <td><a href="{% url 'product_detail' pk=p.pk %}">{{p.name}}</a></td>
+                        <td>{{p.price}}</td>
+                        <td>{{p.category}}</td>
+                        <td>
+                            <img src="{{p.image.url}}" alt="{{p.name}}" />
+
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <button type="button" name="button"><a href="{% url 'new_product' %}">agrega un nuevo producto</a></button>
+    </body>
+</html>
